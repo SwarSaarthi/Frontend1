@@ -1,0 +1,21 @@
+.chapter-transition{position:fixed;inset:0;z-index:95;pointer-events:none;visibility:hidden;overflow:hidden}
+.chapter-transition:not([data-phase=idle]){visibility:visible;pointer-events:auto}
+.chapter-panel{position:absolute;top:0;bottom:0;width:calc(33.334% + 1px);background:#173d32;transform:translate3d(0,101%,0);transition:transform 560ms cubic-bezier(.76,0,.24,1);will-change:transform}
+.panel-a{left:0}.panel-b{left:33.333%;background:#1c4437;transition-delay:45ms}.panel-c{left:66.666%;transition-delay:90ms}
+.chapter-transition[data-phase=leaving] .chapter-panel,.chapter-transition[data-phase=covered] .chapter-panel{transform:translate3d(0,0,0)}
+.chapter-transition[data-phase=entering] .chapter-panel{transform:translate3d(0,-101%,0)}
+.chapter-transition[data-phase=idle] .chapter-panel{transition:none;will-change:auto}
+.chapter-content{position:absolute;inset:0;color:#f5f3eb;display:flex;flex-direction:column;justify-content:center;padding:10vw;opacity:0;transform:translateY(20px);transition:opacity 220ms,transform 400ms;pointer-events:none}
+.chapter-transition[data-phase=covered] .chapter-content{opacity:1;transform:translateY(0)}
+.chapter-transition[data-phase=entering] .chapter-content{opacity:0;transform:translateY(-24px)}
+.chapter-top{display:flex;align-items:center;gap:18px;color:#d8e9a0;font-size:9px;letter-spacing:.2em}
+.chapter-content>p{font-size:clamp(38px,5.3vw,82px);font-family:Georgia,serif;font-style:italic;line-height:1.15;letter-spacing:-.045em;max-width:850px;margin:35px 0}
+.chapter-bottom{display:flex;justify-content:space-between;align-items:center;max-width:850px;border-top:1px solid #bccaa340;padding-top:25px;font-size:11px;letter-spacing:.1em}
+.chapter-wave{display:flex;align-items:center;gap:5px;height:40px}.chapter-wave i{display:block;width:2px;background:#d8e9a0;border-radius:3px}
+.site-frame>main{transition:opacity 340ms,translate 500ms cubic-bezier(.22,1,.36,1)}
+.site-frame[data-route-phase=leaving]>main{opacity:.2;translate:0 -14px}
+.site-frame[data-route-phase=covered]>main{opacity:0;translate:0 18px;transition:none}
+.site-frame[data-route-phase=entering]>main,.site-frame[data-route-phase=idle]>main{opacity:1;translate:0 0}
+.navigation-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+html[data-navigating] .custom-cursor{opacity:0!important}
+@media(prefers-reduced-motion:reduce){.chapter-transition{display:none}.site-frame>main{transition:none;translate:none}}
